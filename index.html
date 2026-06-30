@@ -25,9 +25,9 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family:'Inter',sans-serif; background:var(--cream); color:var(--ink);
-    line-height:1.5; -webkit-font-smoothing:antialiased;
+    line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden;
   }
-  .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 22px; overflow-x:hidden; }
 
   /* hero */
   header.hero { padding:64px 0 40px; text-align:center; position:relative; }
@@ -177,6 +177,7 @@
     background:transparent; border:1px solid var(--line); border-radius:999px; padding:5px 12px; cursor:pointer; transition:.2s; }
   .dprog .clr:hover { border-color:var(--terra); }
   .ex { cursor:pointer; position:relative; padding-left:36px; }
+  .ex > * { min-width:0; max-width:100%; }
   .ex .chk { position:absolute; left:0; top:16px; width:24px; height:24px; border:2px solid var(--terra-soft);
     border-radius:7px; display:grid; place-items:center; transition:.15s; background:transparent; }
   .ex .chk svg { width:14px; height:14px; opacity:0; transform:scale(.5); transition:.15s; }
@@ -188,7 +189,7 @@
 
 
   /* set counter + weight log */
-  .exctl { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  .exctl { display:grid; grid-template-columns:auto 1fr; gap:8px 12px; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
   .exctl .lbl { font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--plum); font-weight:600; opacity:.7; }
   .setctr { display:flex; align-items:center; background:var(--cream-deep); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
   .setctr button { font-weight:700; font-size:15px; color:var(--plum); background:transparent; border:none; width:30px; height:30px; cursor:pointer; transition:.12s; }
@@ -199,8 +200,13 @@
   .wlog input { font-variant-numeric:tabular-nums; font-weight:700; font-size:.82rem; color:var(--ink); background:transparent; border:none; outline:none; width:60px; text-align:right; }
   .wlog input::placeholder { color:var(--plum-soft); opacity:.5; font-weight:400; }
   .wlog .u { font-size:.72rem; color:var(--plum-soft); }
+  .exctl .setctr, .exctl .wlog { justify-self:start; max-width:100%; }
+  .wlog { max-width:100%; }
+  .wlog input { max-width:100%; box-sizing:border-box; }
 
   @media (max-width:560px) {
+    .exctl { grid-template-columns:auto 1fr; }
+    .exctl .wlog { width:100%; }
     .day { padding:20px 18px 6px; }
     .ex-head { flex-direction:column; align-items:flex-start; gap:6px; }
     .meta-strip div { flex:1 1 50%; }
