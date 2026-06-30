@@ -167,6 +167,25 @@
   footer { text-align:center; padding:30px 0 60px; font-size:.76rem; opacity:.5; }
   footer .heart { color:var(--terra); }
 
+
+  /* checks + progress */
+  .dprog { display:flex; align-items:center; gap:12px; margin:0 0 18px; }
+  .dprog .bar { flex:1; height:7px; background:var(--cream-deep); border:1px solid var(--line); border-radius:99px; overflow:hidden; }
+  .dprog .fill { height:100%; width:0; background:linear-gradient(90deg,var(--terra),var(--plum-soft)); transition:width .3s ease; }
+  .dprog .pct { font-variant-numeric:tabular-nums; font-size:.74rem; font-weight:600; color:var(--plum); min-width:52px; text-align:right; }
+  .dprog .clr { font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--plum);
+    background:transparent; border:1px solid var(--line); border-radius:999px; padding:5px 12px; cursor:pointer; transition:.2s; }
+  .dprog .clr:hover { border-color:var(--terra); }
+  .ex { cursor:pointer; position:relative; padding-left:36px; }
+  .ex .chk { position:absolute; left:0; top:16px; width:24px; height:24px; border:2px solid var(--terra-soft);
+    border-radius:7px; display:grid; place-items:center; transition:.15s; background:transparent; }
+  .ex .chk svg { width:14px; height:14px; opacity:0; transform:scale(.5); transition:.15s; }
+  .ex.done .chk { background:var(--terra); border-color:var(--terra); }
+  .ex.done .chk svg { opacity:1; transform:scale(1); }
+  .ex.done { opacity:.5; }
+  .ex.done .ex-head h4 { text-decoration:line-through; text-decoration-color:var(--terra-soft); }
+  @media (max-width:560px){ .ex{padding-left:34px;} .ex .chk{top:18px;} }
+
   @media (max-width:560px) {
     .day { padding:20px 18px 6px; }
     .ex-head { flex-direction:column; align-items:flex-start; gap:6px; }
@@ -208,6 +227,7 @@
         <button class="tab" data-week="2">Sem 2</button>
         <button class="tab" data-week="3">Sem 3</button>
         <button class="tab" data-week="4">Sem 4</button>
+        <button class="tab" data-week="sum">Resumen</button>
 </nav>
 
 <div class="wrap">
@@ -225,6 +245,7 @@
             <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -296,6 +317,7 @@
             <p class="day-sub">Glúteo · Isquio · Tirón</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -367,6 +389,7 @@
             <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -450,6 +473,7 @@
             <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -521,6 +545,7 @@
             <p class="day-sub">Glúteo · Isquio · Tirón</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -592,6 +617,7 @@
             <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -675,6 +701,7 @@
             <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -746,6 +773,7 @@
             <p class="day-sub">Glúteo · Isquio · Tirón</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -817,6 +845,7 @@
             <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -900,6 +929,7 @@
             <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -971,6 +1001,7 @@
             <p class="day-sub">Glúteo · Isquio · Tirón</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -1042,6 +1073,7 @@
             <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
           </div>
         </header>
+        <div class="dprog"><div class="bar"><div class="fill"></div></div><div class="pct">0/0</div><button class="clr" type="button">Limpiar</button></div>
         <div class="ex-list">
         <div class="ex ex-principal">
           <div class="ex-head">
@@ -1112,6 +1144,33 @@
       </aside>
     </section>
 
+    <section class="week" id="week-sum">
+      <div class="week-intro">
+        <span class="eyebrow">Mes 1</span>
+        <h2>Resumen</h2>
+      </div>
+
+      <div class="day">
+        <header class="day-head"><span class="day-index">~</span><div><h3>Frecuencia semanal</h3><p class="day-sub">Series fractional · directo + 0.5 indirecto</p></div></header>
+        <div class="ex-list" id="freq-list"></div>
+      </div>
+
+      <div class="day">
+        <header class="day-head"><span class="day-index">4</span><div><h3>Progresión · 4 semanas</h3><p class="day-sub">Doble progresión sobre RPE</p></div></header>
+        <div class="ex-list">
+          <div class="ex"><div class="ex-head"><h4>Semana 1 · Calibración técnica</h4><span class="tag tag-sec">RPE 7</span></div><p class="ex-note">Piso del rango, técnica sobre carga. La guía es el RPE, no el kg.</p></div>
+          <div class="ex"><div class="ex-head"><h4>Semana 2 · Progresión de carga</h4><span class="tag tag-sec">RPE 8</span></div><p class="ex-note">+5 kg en principales, +1 serie donde corresponde.</p></div>
+          <div class="ex"><div class="ex-head"><h4>Semana 3 · Intensificación</h4><span class="tag tag-pri">RPE 8-9</span></div><p class="ex-note">+1 serie en principales, glúteo en su techo de volumen.</p></div>
+          <div class="ex"><div class="ex-head"><h4>Semana 4 · Pico</h4><span class="tag tag-alto">RPE 9</span></div><p class="ex-note">Carga máxima del bloque. Anota pesos finales, luego descarga 4-7 días al 50%.</p></div>
+        </div>
+      </div>
+
+      <aside class="nota">
+        <span class="nota-label">Notas del mes</span>
+        <p>Sesgo permanente a glúteo alto: abductora inclinada, B-stance hip thrust, abducción/patada diagonal, rangos 15-25 en accesorios. Contando fractional (directo + 0.5 indirecto de sentadilla, RDL y búlgara), el glúteo en sem 3-4 queda en zona de rendimientos decrecientes — si aparece fatiga, el primer recorte son las series de abducción accesoria del domingo, no los principales. Cuida la sensación lateral-alta sobre el número. Los checks se guardan en este navegador, independientes por semana; usa "Limpiar" para reiniciar un día.</p>
+      </aside>
+    </section>
+
   <div class="legend">
     <span><span class="dot dot-alto"></span>Glúteo alto · prioridad</span>
     <span><span class="dot dot-pri"></span>Principal</span>
@@ -1125,6 +1184,7 @@
 </div>
 
 <script>
+  // ---- tabs ----
   const tabs = document.querySelectorAll('.tab');
   const weeks = document.querySelectorAll('.week');
   tabs.forEach(t => t.addEventListener('click', () => {
@@ -1133,6 +1193,83 @@
     weeks.forEach(w => w.classList.toggle('active', w.id==='week-'+n));
     window.scrollTo({top:0, behavior:'smooth'});
   }));
+
+  // ---- checks por semana x dia, persistentes e independientes ----
+  const CHK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+  function exKey(week, day, idx){ return 'plani-valerie:w'+week+':d'+day+':'+idx; }
+
+  // Solo procesar ejercicios dentro de las semanas 1-4 (no resumen)
+  document.querySelectorAll('.week').forEach(weekEl => {
+    const wid = weekEl.id.replace('week-','');
+    if(wid === 'sum') return;
+    weekEl.querySelectorAll('article.day').forEach(dayEl => {
+      const did = dayEl.dataset.day;
+      const exs = dayEl.querySelectorAll('.ex-list .ex');
+      exs.forEach((ex, idx) => {
+        // checkbox
+        const chk = document.createElement('div');
+        chk.className = 'chk';
+        chk.innerHTML = CHK_SVG;
+        ex.insertBefore(chk, ex.firstChild);
+        // estado inicial
+        if(localStorage.getItem(exKey(wid,did,idx)) === '1') ex.classList.add('done');
+        // toggle
+        ex.addEventListener('click', () => {
+          const now = ex.classList.toggle('done');
+          if(now) localStorage.setItem(exKey(wid,did,idx),'1');
+          else localStorage.removeItem(exKey(wid,did,idx));
+          updateDay(weekEl, dayEl, wid, did);
+        });
+      });
+      updateDay(weekEl, dayEl, wid, did);
+
+      // boton limpiar
+      const clr = dayEl.querySelector('.clr');
+      if(clr){
+        clr.addEventListener('click', (e) => {
+          e.stopPropagation();
+          exs.forEach((ex, idx) => {
+            ex.classList.remove('done');
+            localStorage.removeItem(exKey(wid,did,idx));
+          });
+          updateDay(weekEl, dayEl, wid, did);
+        });
+      }
+    });
+  });
+
+  function updateDay(weekEl, dayEl, wid, did){
+    const exs = dayEl.querySelectorAll('.ex-list .ex');
+    const total = exs.length;
+    let done = 0;
+    exs.forEach((ex, idx) => { if(localStorage.getItem(exKey(wid,did,idx))==='1') done++; });
+    const pct = total ? Math.round(done/total*100) : 0;
+    const fill = dayEl.querySelector('.dprog .fill');
+    const lbl  = dayEl.querySelector('.dprog .pct');
+    if(fill) fill.style.width = pct + '%';
+    if(lbl)  lbl.textContent = done + '/' + total;
+  }
+
+  // ---- resumen: frecuencia fractional por grupo ----
+  const freqs = [
+    ["Glúteo", "alto · prioridad", "Mar · Jue · Dom", "alto"],
+    ["Cuádriceps", "sentadilla · búlgara", "Mar · Jue", "pri"],
+    ["Isquios", "RDL · curl femoral", "Jue", "pri"],
+    ["Empuje (pecho/hombro)", "complemento", "Mar", "sec"],
+    ["Tirón (espalda)", "remo · face pull", "Jue · Dom", "sec"],
+    ["Tríceps / delt post.", "complemento", "Dom", "sec"]
+  ];
+  const fl = document.getElementById('freq-list');
+  if(fl){
+    fl.innerHTML = freqs.map(f => {
+      const tagClass = f[3]==='alto' ? 'tag-alto' : f[3]==='pri' ? 'tag-pri' : 'tag-sec';
+      const star = f[3]==='alto' ? '<span class="star">✦</span>' : '';
+      return `<div class="ex" style="cursor:default;padding-left:0;">
+        <div class="ex-head"><h4>${star}${f[0]}</h4><span class="tag ${tagClass}">${f[2]}</span></div>
+        <p class="ex-note">${f[1]}</p>
+      </div>`;
+    }).join('');
+  }
 </script>
 </body>
 </html>
