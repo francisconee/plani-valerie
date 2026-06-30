@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Plani · Mes 1 · Glúteo alto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFFFFF;
+    --cream-deep: #F6EDE3;
+    --ink: #3A2A2E;
+    --plum: #7C3A52;
+    --plum-soft: #A8546E;
+    --terra: #C97B5A;
+    --terra-soft: #E0A989;
+    --gold: #C9A24B;
+    --line: #E2D2C2;
+    --card: #FFFCF8;
+    --shadow: 24px 24px 60px rgba(124,58,82,.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',sans-serif; background:var(--cream); color:var(--ink);
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
+
+  /* hero */
+  header.hero { padding:64px 0 40px; text-align:center; position:relative; }
+  .hero .kicker {
+    font-size:.72rem; letter-spacing:.32em; text-transform:uppercase;
+    color:var(--plum-soft); font-weight:600; margin-bottom:22px;
+  }
+  .hero h1 {
+    font-family:'Fraunces',serif; font-weight:500; font-size:clamp(2.6rem,8vw,4.6rem);
+    line-height:1.02; letter-spacing:-.02em; color:var(--plum);
+  }
+  .hero h1 em { font-style:italic; color:var(--terra); }
+  .hero .sub {
+    margin-top:20px; font-size:1.02rem; color:var(--ink); opacity:.72;
+    max-width:440px; margin-left:auto; margin-right:auto;
+  }
+  .crest {
+    width:46px; height:46px; margin:0 auto 24px; display:block;
+  }
+
+  /* meta strip */
+  .meta-strip {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:8px 0;
+    margin-top:34px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .meta-strip div {
+    flex:1 1 33%; min-width:120px; padding:16px 10px; text-align:center;
+    border-right:1px solid var(--line);
+  }
+  .meta-strip div:last-child { border-right:none; }
+  .meta-strip .m-val { font-family:'Fraunces',serif; font-size:1.4rem; color:var(--plum); display:block; }
+  .meta-strip .m-lab { font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; opacity:.55; margin-top:3px; }
+
+  /* activation */
+  .activation {
+    margin:40px 0; background:linear-gradient(135deg,var(--plum),var(--plum-soft));
+    color:#fff; border-radius:22px; padding:30px 32px;
+  }
+  .activation h3 {
+    font-family:'Fraunces',serif; font-weight:500; font-size:1.3rem; margin-bottom:4px;
+  }
+  .activation .act-sub { font-size:.8rem; opacity:.8; margin-bottom:18px; }
+  .activation ul { list-style:none; }
+  .activation li {
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:11px 0; border-bottom:1px solid rgba(255,255,255,.16); gap:14px;
+  }
+  .activation li:last-child { border-bottom:none; }
+  .act-name { font-size:.92rem; }
+  .act-sr { font-variant-numeric:tabular-nums; font-weight:600; font-size:.86rem; color:var(--terra-soft); white-space:nowrap; }
+
+  /* tabs */
+  .tabs {
+    position:sticky; top:0; z-index:20; background:var(--cream);
+    display:flex; gap:6px; padding:14px 0; justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  .tab {
+    font-family:'Inter',sans-serif; font-size:.84rem; font-weight:600;
+    padding:9px 20px; border-radius:999px; border:1px solid var(--line);
+    background:transparent; color:var(--plum); cursor:pointer; transition:all .25s;
+  }
+  .tab:hover { border-color:var(--terra); }
+  .tab.active { background:var(--plum); color:#fff; border-color:var(--plum); }
+
+  /* weeks */
+  .week { display:none; padding:38px 0 10px; }
+  .week.active { display:block; animation:fade .4s ease; }
+  @keyframes fade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  .week-intro { margin-bottom:26px; }
+  .eyebrow {
+    font-size:.68rem; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--terra); font-weight:600;
+  }
+  .week-intro h2 {
+    font-family:'Fraunces',serif; font-weight:500; font-size:2rem; color:var(--plum);
+    letter-spacing:-.01em; margin-top:5px;
+  }
+
+  .day {
+    background:var(--card); border-radius:22px; padding:26px 26px 10px;
+    margin-bottom:22px; box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  .day-head { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+  .day-index {
+    font-family:'Fraunces',serif; font-style:italic; font-size:1.5rem;
+    color:var(--terra); width:42px; height:42px; flex:none;
+    display:grid; place-items:center; border:1.5px solid var(--terra-soft);
+    border-radius:50%;
+  }
+  .day-head h3 { font-family:'Fraunces',serif; font-weight:600; font-size:1.22rem; color:var(--ink); }
+  .day-sub { font-size:.78rem; letter-spacing:.04em; opacity:.6; margin-top:1px; }
+
+  .ex { padding:16px 0; border-top:1px solid var(--line); }
+  .ex:first-child { border-top:none; }
+  .ex-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .ex-head h4 { font-size:1rem; font-weight:600; color:var(--ink); }
+  .star { color:var(--gold); margin-right:6px; font-size:.85em; }
+  .tag {
+    font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600;
+    padding:4px 10px; border-radius:999px; white-space:nowrap;
+  }
+  .tag-alto { background:#F4E6C9; color:#9A7613; }
+  .tag-pri { background:#F1D9DF; color:var(--plum); }
+  .tag-sec { background:#EAE0D4; color:#8A6E55; }
+  .ex-alto h4 { color:var(--plum); }
+  .ex-meta { display:flex; gap:8px; flex-wrap:wrap; margin:9px 0; }
+  .ex-meta span {
+    font-size:.78rem; font-variant-numeric:tabular-nums; padding:3px 11px;
+    border-radius:7px; font-weight:500;
+  }
+  .sr { background:var(--cream-deep); color:var(--ink); font-weight:600; }
+  .rpe { background:var(--plum); color:#fff; }
+  .rest { background:transparent; color:var(--terra); border:1px solid var(--terra-soft); }
+  .ex-note { font-size:.84rem; opacity:.66; line-height:1.45; }
+
+  .nota {
+    background:var(--cream-deep); border-left:3px solid var(--gold);
+    border-radius:0 16px 16px 0; padding:20px 24px; margin-top:6px;
+  }
+  .nota-label {
+    font-size:.66rem; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; display:block; margin-bottom:7px;
+  }
+  .nota p { font-size:.88rem; line-height:1.55; opacity:.82; }
+
+  /* legend / footer */
+  .legend {
+    display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+    margin:36px 0; font-size:.74rem; opacity:.7;
+  }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .dot { width:10px; height:10px; border-radius:50%; }
+  .dot-alto { background:var(--gold); }
+  .dot-pri { background:var(--plum); }
+  .dot-sec { background:#C2A98E; }
+  footer { text-align:center; padding:30px 0 60px; font-size:.76rem; opacity:.5; }
+  footer .heart { color:var(--terra); }
+
+  @media (max-width:560px) {
+    .day { padding:20px 18px 6px; }
+    .ex-head { flex-direction:column; align-items:flex-start; gap:6px; }
+    .meta-strip div { flex:1 1 50%; }
+  }
+  @media (prefers-reduced-motion:reduce) { .week.active { animation:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <svg class="crest" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 4C24 4 14 14 14 26a10 10 0 0020 0C34 14 24 4 24 4z" fill="#C97B5A" opacity=".9"/>
+      <path d="M24 10c0 0 5 6 5 14a5 5 0 01-10 0c0-8 5-14 5-14z" fill="#7C3A52"/>
+    </svg>
+    <p class="kicker">Mes 1 · Hipertrofia</p>
+    <h1>Glúteo <em>alto</em></h1>
+    <p class="sub">Mesociclo de 4 semanas, 3 sesiones por semana, con el estímulo sesgado a glúteo medio y fibras altas. Intensidad por RPE.</p>
+    <div class="meta-strip">
+      <div><span class="m-val">3×</span><span class="m-lab">Frecuencia glúteo</span></div>
+      <div><span class="m-val">5</span><span class="m-lab">Ejercicios / día</span></div>
+      <div><span class="m-val">15-25</span><span class="m-lab">Reps glúteo alto</span></div>
+    </div>
+  </header>
+
+  <section class="activation">
+    <h3>Activación</h3>
+    <p class="act-sub">8-10 min · los tres días, antes de cargar</p>
+    <ul>
+          <li><span class="act-name">Puente de glúteo a 1 pierna</span><span class="act-sr">2×12/lado</span></li>
+          <li><span class="act-name">Abducción con banda de pie (rodilla afuera)</span><span class="act-sr">2×20/lado</span></li>
+          <li><span class="act-name">Bird-dog</span><span class="act-sr">2×8/lado</span></li>
+    </ul>
+  </section>
+</div>
+
+<nav class="tabs">
+        <button class="tab active" data-week="1">Sem 1</button>
+        <button class="tab" data-week="2">Sem 2</button>
+        <button class="tab" data-week="3">Sem 3</button>
+        <button class="tab" data-week="4">Sem 4</button>
+</nav>
+
+<div class="wrap">
+    <section class="week active" id="week-1">
+      <div class="week-intro">
+        <span class="eyebrow">Semana 1</span>
+        <h2>Calibración técnica</h2>
+      </div>
+      <div class="days">
+      <article class="day" data-day="1">
+        <header class="day-head">
+          <span class="day-index">01</span>
+          <div>
+            <h3>Martes</h3>
+            <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">Aprieta glúteo 1 s arriba, rodillas afuera, sin hiperlordosis. ~40-50 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla con barra</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">Bajo paralelo, rodillas siguen la punta del pie. ~30-40 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Inclínate muy adelante sobre el apoyo, apertura completa, cede 2 s. ~25-30 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de pecho</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">2 s en la bajada. ~25-30 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de hombros</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Agarre neutro si hay, no subas trapecios. ~20-25 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="2">
+        <header class="day-head">
+          <span class="day-index">02</span>
+          <div>
+            <h3>Jueves</h3>
+            <p class="day-sub">Glúteo · Isquio · Tirón</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Peso Muerto Rumano</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">Bisagra pura, barra pegada, estiramiento isquio-glúteo. ~30-40 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla Búlgara</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12/lado</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">Paso amplio, rodilla trasera casi al suelo. ~8-12 kg c/u</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Cable abducción de pie (diagonal)</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20/lado</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">Diagonal atrás-afuera, no recta. Rodilla afuera. Carga ligera</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Curl Femoral Acostado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Excéntrica 3 s. ~20-25 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Remo Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">Retracción escapular al final, sin momentum. ~30-35 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="3">
+        <header class="day-head">
+          <span class="day-index">03</span>
+          <div>
+            <h3>Domingo</h3>
+            <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>B-stance Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×12-15/lado</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">Pie de apoyo adelante toma el 70%, el trasero solo equilibra. ~30-40 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Zancada lateral / Cossack</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15/lado</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Empuja con talón y rodilla afuera al subir. Peso corporal o mancuerna</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Mismo cue del martes. ~30-35 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Reverse Peck Deck / Face Pull</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">Abre codos, rotación externa al final. Delt posterior</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Trícep (extensión)</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15</span>
+            <span class="rpe">RPE 7</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">Codos fijos, rango completo. ~15-20 kg</p>
+        </div>
+        </div>
+      </article>
+      </div>
+      <aside class="nota">
+        <span class="nota-label">Nota de la semana</span>
+        <p>Semana de calibración — la guía es el RPE, no el kg. En abductora inclinada y cable busca ardor en la cara lateral-alta del glúteo, no en el muslo. Si lo sientes en cuádriceps o aductor, corrige el ángulo.</p>
+      </aside>
+    </section>
+    <section class="week" id="week-2">
+      <div class="week-intro">
+        <span class="eyebrow">Semana 2</span>
+        <h2>Progresión de carga</h2>
+      </div>
+      <div class="days">
+      <article class="day" data-day="1">
+        <header class="day-head">
+          <span class="day-index">01</span>
+          <div>
+            <h3>Martes</h3>
+            <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg vs sem 1. Aprieta 1 s, rodillas afuera. ~45-55 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla con barra</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie. ~32.5-42.5 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~27.5-32.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de pecho</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~27.5-32.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de hombros</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~22.5-27.5 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="2">
+        <header class="day-head">
+          <span class="day-index">02</span>
+          <div>
+            <h3>Jueves</h3>
+            <p class="day-sub">Glúteo · Isquio · Tirón</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Peso Muerto Rumano</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg. ~35-45 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla Búlgara</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12/lado</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2 kg c/u (~10-14 kg)</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Cable abducción de pie (diagonal)</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20/lado</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 placa. Mantén el sesgo lateral-alto</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Curl Femoral Acostado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~22.5-27.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Remo Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie, +2.5 kg. ~32.5-37.5 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="3">
+        <header class="day-head">
+          <span class="day-index">03</span>
+          <div>
+            <h3>Domingo</h3>
+            <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>B-stance Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×12-15/lado</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg. ~35-45 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Zancada lateral / Cossack</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15/lado</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~32.5-37.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Reverse Peck Deck / Face Pull</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Trícep (extensión)</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~17.5-22.5 kg</p>
+        </div>
+        </div>
+      </article>
+      </div>
+      <aside class="nota">
+        <span class="nota-label">Nota de la semana</span>
+        <p>Si la fatiga martes→domingo es alta (déficit), recorta 1 serie de la abductora inclinada del domingo antes de tocar la carga de los principales. No subas carga en cable ni Cossack si pierdes el sesgo lateral-alto: sensación sobre número.</p>
+      </aside>
+    </section>
+    <section class="week" id="week-3">
+      <div class="week-intro">
+        <span class="eyebrow">Semana 3</span>
+        <h2>Intensificación</h2>
+      </div>
+      <div class="days">
+      <article class="day" data-day="1">
+        <header class="day-head">
+          <span class="day-index">01</span>
+          <div>
+            <h3>Martes</h3>
+            <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×8-10</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie +5 kg. Última a 1-2 RIR. ~50-60 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla con barra</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">Baja reps, más carga. ~35-45 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×15-20</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie. ~30-35 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de pecho</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×8-10</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~30-35 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de hombros</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~25-30 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="2">
+        <header class="day-head">
+          <span class="day-index">02</span>
+          <div>
+            <h3>Jueves</h3>
+            <p class="day-sub">Glúteo · Isquio · Tirón</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Peso Muerto Rumano</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×8-10</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie +5 kg. Excéntrica 3 s. ~40-50 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla Búlgara</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10/lado</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2 kg (~12-16 kg). Máxima profundidad</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Patada de glúteo diagonal (polea)</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15-20/lado</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">Atrás-afuera, no recta. Aprieta 1 s</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Curl Femoral Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">Estímulo en longitud larga. ~20-25 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Remo Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×10-12</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~35-40 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="3">
+        <header class="day-head">
+          <span class="day-index">03</span>
+          <div>
+            <h3>Domingo</h3>
+            <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>B-stance Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×12-15/lado</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie +5 kg. Pausa 1 s arriba. ~40-50 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Zancada lateral / Cossack</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×12-15/lado</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×15-20</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie. ~35-40 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Reverse Peck Deck / Face Pull</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15</span>
+            <span class="rpe">RPE 8</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Trícep (extensión)</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~20-25 kg</p>
+        </div>
+        </div>
+      </article>
+      </div>
+      <aside class="nota">
+        <span class="nota-label">Nota de la semana</span>
+        <p>Glúteo sube a ~17-18 series/sem — es el techo, no añadas más. Si la lumbar queda fatigada tras RDL + hip thrust, recorta 1 serie de Cossack antes de tocar los principales. La patada diagonal entra esta semana en reemplazo del cable: variar el ángulo, no repetir vector.</p>
+      </aside>
+    </section>
+    <section class="week" id="week-4">
+      <div class="week-intro">
+        <span class="eyebrow">Semana 4</span>
+        <h2>Pico</h2>
+      </div>
+      <div class="days">
+      <article class="day" data-day="1">
+        <header class="day-head">
+          <span class="day-index">01</span>
+          <div>
+            <h3>Martes</h3>
+            <p class="day-sub">Glúteo · Cuádriceps · Empuje</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×8-10</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg. Última a 1 RIR. ~55-65 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla con barra</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. Profundidad máxima. ~37.5-47.5 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×15-20</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~32.5-37.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de pecho</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×8-10</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~32.5-37.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina press de hombros</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~27.5-32.5 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="2">
+        <header class="day-head">
+          <span class="day-index">02</span>
+          <div>
+            <h3>Jueves</h3>
+            <p class="day-sub">Glúteo · Isquio · Tirón</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Peso Muerto Rumano</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×8-10</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">2&#x27; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg. Excéntrica 3 s, no redondees la espalda. ~45-55 kg</p>
+        </div>
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>Sentadilla Búlgara</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×8-10/lado</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2 kg (~14-18 kg). La más dura del bloque</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Patada de glúteo diagonal (polea)</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×15-20/lado</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+1 serie</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Curl Femoral Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×10-12</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~22.5-27.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Remo Sentado</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×10-12</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~37.5-42.5 kg</p>
+        </div>
+        </div>
+      </article>
+      <article class="day" data-day="3">
+        <header class="day-head">
+          <span class="day-index">03</span>
+          <div>
+            <h3>Domingo</h3>
+            <p class="day-sub">Glúteo alto · Abducción · Complementos</p>
+          </div>
+        </header>
+        <div class="ex-list">
+        <div class="ex ex-principal">
+          <div class="ex-head">
+            <h4>B-stance Hip Thrust en máquina</h4>
+            <span class="tag tag-pri">Principal</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">5×12-15/lado</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">90&quot; desc.</span>
+          </div>
+          <p class="ex-note">+5 kg. Pausa 1 s, no hiperextiendas lumbar. ~45-55 kg</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Zancada lateral / Cossack</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×12-15/lado</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2 kg. Máximo rango</p>
+        </div>
+        <div class="ex ex-alto">
+          <div class="ex-head">
+            <h4><span class="star">✦</span>Abductora torso muy inclinado</h4>
+            <span class="tag tag-alto">Glúteo alto</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">4×15-20</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">75&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~37.5-42.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Reverse Peck Deck / Face Pull</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×15</span>
+            <span class="rpe">RPE 8-9</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg</p>
+        </div>
+        <div class="ex ex-sec">
+          <div class="ex-head">
+            <h4>Máquina Trícep (extensión)</h4>
+            <span class="tag tag-sec">Secundario</span>
+          </div>
+          <div class="ex-meta">
+            <span class="sr">3×12-15</span>
+            <span class="rpe">RPE 9</span>
+            <span class="rest">60&quot; desc.</span>
+          </div>
+          <p class="ex-note">+2.5 kg. ~22.5-27.5 kg</p>
+        </div>
+        </div>
+      </article>
+      </div>
+      <aside class="nota">
+        <span class="nota-label">Nota de la semana</span>
+        <p>Semana pico. Anota todos los pesos finales: son el punto de partida del próximo bloque tras descarga (4-7 días al 50% de volumen e intensidad). Proteína ≥1.6 g/kg/día (≥128 g) para proteger masa en déficit. Si el rendimiento cae 2 sesiones seguidas, recorta 1 serie antes de bajar carga.</p>
+      </aside>
+    </section>
+
+  <div class="legend">
+    <span><span class="dot dot-alto"></span>Glúteo alto · prioridad</span>
+    <span><span class="dot dot-pri"></span>Principal</span>
+    <span><span class="dot dot-sec"></span>Secundario</span>
+  </div>
+
+  <footer>
+    Plani complementaria · equipos Matrix · Smartfit Chile<br>
+    Hecho con criterio <span class="heart">✦</span> revisa el RPE antes que el kilaje
+  </footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const weeks = document.querySelectorAll('.week');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const n = t.dataset.week;
+    tabs.forEach(x => x.classList.toggle('active', x===t));
+    weeks.forEach(w => w.classList.toggle('active', w.id==='week-'+n));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }));
+</script>
+</body>
+</html>
