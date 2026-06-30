@@ -186,6 +186,20 @@
   .ex.done .ex-head h4 { text-decoration:line-through; text-decoration-color:var(--terra-soft); }
   @media (max-width:560px){ .ex{padding-left:34px;} .ex .chk{top:18px;} }
 
+
+  /* set counter + weight log */
+  .exctl { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  .exctl .lbl { font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; color:var(--plum); font-weight:600; opacity:.7; }
+  .setctr { display:flex; align-items:center; background:var(--cream-deep); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .setctr button { font-weight:700; font-size:15px; color:var(--plum); background:transparent; border:none; width:30px; height:30px; cursor:pointer; transition:.12s; }
+  .setctr button:hover { background:#EFE2D2; }
+  .setctr .cnt { font-variant-numeric:tabular-nums; font-weight:700; font-size:.78rem; color:var(--ink); min-width:42px; text-align:center; padding:0 4px; }
+  .setctr .cnt.full { color:var(--terra); }
+  .wlog { display:flex; align-items:center; gap:6px; background:var(--cream-deep); border:1px solid var(--line); border-radius:8px; padding:0 10px; height:32px; }
+  .wlog input { font-variant-numeric:tabular-nums; font-weight:700; font-size:.82rem; color:var(--ink); background:transparent; border:none; outline:none; width:60px; text-align:right; }
+  .wlog input::placeholder { color:var(--plum-soft); opacity:.5; font-weight:400; }
+  .wlog .u { font-size:.72rem; color:var(--plum-soft); }
+
   @media (max-width:560px) {
     .day { padding:20px 18px 6px; }
     .ex-head { flex-direction:column; align-items:flex-start; gap:6px; }
@@ -1198,6 +1212,16 @@
   const CHK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
   function exKey(week, day, idx){ return 'plani-valerie:w'+week+':d'+day+':'+idx; }
 
+  function setsKey(w,d,i){ return 'plani-valerie:sets:w'+w+':d'+d+':'+i; }
+  function wKey(w,d,i){ return 'plani-valerie:peso:w'+w+':d'+d+':'+i; }
+  function targetSets(ex){
+    // leer "4×8-10" del span.sr -> series objetivo = numero antes de la x
+    const sr = ex.querySelector('.sr');
+    if(!sr) return 1;
+    const m = sr.textContent.match(/(\d+)\s*[×x]/);
+    return m ? parseInt(m[1],10) : 1;
+  }
+
   // Solo procesar ejercicios dentro de las semanas 1-4 (no resumen)
   document.querySelectorAll('.week').forEach(weekEl => {
     const wid = weekEl.id.replace('week-','');
@@ -1211,13 +1235,74 @@
         chk.className = 'chk';
         chk.innerHTML = CHK_SVG;
         ex.insertBefore(chk, ex.firstChild);
-        // estado inicial
         if(localStorage.getItem(exKey(wid,did,idx)) === '1') ex.classList.add('done');
-        // toggle
-        ex.addEventListener('click', () => {
+
+        const tgt = targetSets(ex);
+
+        // panel de controles (series + peso)
+        const ctl = document.createElement('div');
+        ctl.className = 'exctl';
+        ctl.innerHTML =
+          '<span class="lbl">Series</span>'+
+          '<div class="setctr"><button type="button" data-act="dec">−</button><span class="cnt">0/'+tgt+'</span><button type="button" data-act="inc">+</button></div>'+
+          '<span class="lbl">Peso</span>'+
+          '<div class="wlog"><input type="text" inputmode="decimal" placeholder="—"><span class="u">kg</span></div>';
+        ex.appendChild(ctl);
+
+        const cntEl = ctl.querySelector('.cnt');
+        const inp = ctl.querySelector('.wlog input');
+
+        function curSets(){
+          let c = parseInt(localStorage.getItem(setsKey(wid,did,idx))||'0',10);
+          if(localStorage.getItem(exKey(wid,did,idx))==='1' && c<tgt) c=tgt;
+          return c;
+        }
+        function paintSets(){
+          const c = curSets();
+          cntEl.textContent = c+'/'+tgt;
+          cntEl.classList.toggle('full', c>=tgt);
+        }
+        // estado inicial peso
+        const pInit = localStorage.getItem(wKey(wid,did,idx));
+        if(pInit) inp.value = pInit;
+        paintSets();
+
+        // listeners de series
+        ctl.querySelectorAll('.setctr button').forEach(b=>{
+          b.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            let c = curSets();
+            c += (b.dataset.act==='inc'?1:-1);
+            if(c<0)c=0; if(c>tgt)c=tgt;
+            if(c>0) localStorage.setItem(setsKey(wid,did,idx),String(c));
+            else localStorage.removeItem(setsKey(wid,did,idx));
+            // sincronizar check
+            if(c>=tgt){ localStorage.setItem(exKey(wid,did,idx),'1'); ex.classList.add('done'); }
+            else { localStorage.removeItem(exKey(wid,did,idx)); ex.classList.remove('done'); }
+            paintSets();
+            updateDay(weekEl, dayEl, wid, did);
+          });
+        });
+        // peso: guardar y no propagar el toggle
+        inp.addEventListener('click', e=>e.stopPropagation());
+        inp.addEventListener('input', ()=>{
+          const v = inp.value.trim();
+          if(v) localStorage.setItem(wKey(wid,did,idx), v);
+          else localStorage.removeItem(wKey(wid,did,idx));
+        });
+
+        // toggle check al tocar la fila (no en controles)
+        ex.addEventListener('click', (e) => {
+          if(e.target.closest('.exctl')) return;
           const now = ex.classList.toggle('done');
-          if(now) localStorage.setItem(exKey(wid,did,idx),'1');
-          else localStorage.removeItem(exKey(wid,did,idx));
+          if(now){
+            localStorage.setItem(exKey(wid,did,idx),'1');
+            localStorage.setItem(setsKey(wid,did,idx),String(tgt));
+          } else {
+            localStorage.removeItem(exKey(wid,did,idx));
+            localStorage.removeItem(setsKey(wid,did,idx));
+          }
+          paintSets();
           updateDay(weekEl, dayEl, wid, did);
         });
       });
@@ -1231,6 +1316,13 @@
           exs.forEach((ex, idx) => {
             ex.classList.remove('done');
             localStorage.removeItem(exKey(wid,did,idx));
+            localStorage.removeItem(setsKey(wid,did,idx));
+            localStorage.removeItem(wKey(wid,did,idx));
+            const cntEl = ex.querySelector('.cnt');
+            const tgt = targetSets(ex);
+            if(cntEl){ cntEl.textContent='0/'+tgt; cntEl.classList.remove('full'); }
+            const inp = ex.querySelector('.wlog input');
+            if(inp) inp.value='';
           });
           updateDay(weekEl, dayEl, wid, did);
         });
